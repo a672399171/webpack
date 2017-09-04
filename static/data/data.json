@@ -1,0 +1,19 @@
+{
+  "result": {
+    "success": true,
+    "code": "",
+    "info": ""
+  },
+  "data": [
+    {
+      "username": "张三",
+      "dateRegistered": "2017/09/04",
+      "role": "member"
+    },
+    {
+      "username": "李四",
+      "dateRegistered": "2017/09/03",
+      "role": "admin"
+    }
+  ]
+}

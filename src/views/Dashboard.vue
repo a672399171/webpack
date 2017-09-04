@@ -53,10 +53,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Pompeius René</td>
-                    <td>2012/01/01</td>
-                    <td>Member</td>
+                <tr v-for="item in list">
+                    <td>{{item.username}}</td>
+                    <td>{{item.dateRegistered}}</td>
+                    <td>{{item.role}}</td>
                     <td>
                         <span class="badge badge-success">Active</span>
                     </td>
@@ -78,12 +78,29 @@
 </template>
 
 <script>
-    import cSwitch from '@/components/Switch'
+	import cSwitch from '@/components/Switch'
 
-    export default {
-        name: 'dashboard',
-        components: {
-            cSwitch
-        }
-    }
+	export default {
+		name: 'dashboard',
+		data() {
+			return {
+				list:[]
+            }
+        },
+		components: {
+			cSwitch
+		},
+		mounted() {
+			var _this = this;
+			this.$nextTick(() => {
+				_this.$http.get('static/data/data.json').then((res) => {
+					if(res.body.result && res.body.result.success) {
+						_this.list = res.body.data;
+                    } else {
+						console.error(res.body.result.info);
+                    }
+				});
+			})
+		}
+	}
 </script>
